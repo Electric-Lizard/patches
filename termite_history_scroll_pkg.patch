@@ -1,0 +1,11 @@
+--- termitepk	2015-10-18 18:43:04.186734351 +0000
++++ termitepk.new	2015-10-18 19:03:11.786794987 +0000
+@@ -25,3 +25,8 @@
+   make PREFIX=/usr DESTDIR="$pkgdir" install
+   install -Dm644 config "$pkgdir/etc/xdg/termite/config"
+ }
++
++prepare() {
++    cd "${srcdir}"/${pkgname}
++    patch -Np1 -i /home/username/src/patches/termite_history_scroll.patch
++}

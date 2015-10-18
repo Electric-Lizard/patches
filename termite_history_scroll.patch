@@ -1,0 +1,61 @@
+From 2e9377859182739d8b3726a5a60c4232a637f136 Mon Sep 17 00:00:00 2001
+From: Electric-Lizard <Koldasov3@gmail.com>
+Date: Sun, 18 Oct 2015 18:12:09 +0000
+Subject: [PATCH] er
+
+---
+ termite.cc | 38 ++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 38 insertions(+)
+
+diff --git a/termite.cc b/termite.cc
+index 55b79e4..fbb142f 100644
+--- a/termite.cc
++++ b/termite.cc
+@@ -901,6 +901,44 @@ gboolean key_press_cb(VteTerminal *vte, GdkEventKey *event, keybind_info *info)
+             case GDK_KEY_r:
+                 reload_config();
+                 return TRUE;
++            case GDK_KEY_j:
++                {
++                    unsigned keyval = GDK_KEY_Page_Down;
++                    GdkEvent new_event;
++
++                    new_event.key.type = GDK_KEY_PRESS;
++                    new_event.key.window = gtk_widget_get_parent_window(gtk_window_get_focus(info->window));
++                    new_event.key.send_event = TRUE;
++                    new_event.key.time = GDK_CURRENT_TIME;
++                    new_event.key.keyval = keyval;
++                    new_event.key.state = GDK_SHIFT_MASK;
++                    new_event.key.length = 0;
++                    new_event.key.string = nullptr;
++                    new_event.key.hardware_keycode = 0;
++                    new_event.key.group = 0;
++
++                    gdk_event_put(&new_event);
++                    return TRUE;
++                }
++            case GDK_KEY_k:
++                {
++                    unsigned keyval = GDK_KEY_Page_Up;
++                    GdkEvent new_event;
++
++                    new_event.key.type = GDK_KEY_PRESS;
++                    new_event.key.window = gtk_widget_get_parent_window(gtk_window_get_focus(info->window));
++                    new_event.key.send_event = TRUE;
++                    new_event.key.time = GDK_CURRENT_TIME;
++                    new_event.key.keyval = keyval;
++                    new_event.key.state = GDK_SHIFT_MASK;
++                    new_event.key.length = 0;
++                    new_event.key.string = nullptr;
++                    new_event.key.hardware_keycode = 0;
++                    new_event.key.group = 0;
++
++                    gdk_event_put(&new_event);
++                    return TRUE;
++                }
+             default:
+                 if (modify_key_feed(event, info))
+                     return TRUE;
+-- 
+2.6.1
+
