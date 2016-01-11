@@ -1,0 +1,3 @@
+To make termite patch work add file to /etc/customizepkg.d/ with this content:
+
+patch#pkgbuild#{path_to_patches}/termite_history_scroll_pkg.patch
